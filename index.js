@@ -1,3 +1,4 @@
+// https://github.com/risentveber/express-example-app
 const express = require('express');
 const bodyParset = require('body-parser');
 
@@ -10,8 +11,9 @@ let users = [];
 app.get('/users/', (req, res) => res.json(users.filter(u => u)));
 
 app.post('/users/', (req, res) => {
+  const id = users.length;
   users.push(req.body);
-  res.send();
+  res.json({ id });
 });
 
 app.delete('/users/:id', (req, res) => {
@@ -41,4 +43,4 @@ app.put('/users/:id', (req, res) => {
   }
 });
 
-app.listen(3000);
+app.listen(3000, () => console.log('Server has been run on 3000 port'));
